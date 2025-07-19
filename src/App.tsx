@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import markdownit from 'markdown-it';
 import ReactPlayer from 'react-player/youtube';
 
