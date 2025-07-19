@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import markdownit from 'markdown-it';
-import ReactPlayer from 'react-player/youtube';
 
 // --- TÍPUSOK ---
 type ChatContent = {
@@ -94,17 +93,7 @@ function App() {
     const [isBlogOpen, setBlogOpen] = useState(false);
     const [isMapOpen, setMapOpen] = useState(false);
 
-    // --- ITT AZ ÚJ RÉSZ ---
-    const playerRef = useRef<ReactPlayer>(null);
     const chatMessagesRef = useRef<HTMLDivElement>(null);
-
-    // Ez az "őrszem", ami újraindítja a videót
-    const handleVideoEnd = () => {
-        setTimeout(() => {
-            playerRef.current?.seekTo(0);
-        }, 100); // Rövid késleltetés a biztonság kedvéért
-    };
-    // --- VÉGE ---
 
     const setLanguage = (lang: Language) => {
         setCurrentLang(lang);
@@ -184,29 +173,10 @@ function App() {
 
     return (
         <>
-            <div id="video-background-wrapper">
-                <ReactPlayer
-                    ref={playerRef} // ÚJ: Referencia a lejátszóhoz
-                    url="https://www.youtube.com/watch?v=TK-K1CZsLmU"
-                    className="react-player"
-                    playing={true}
-                    // A loop={true} helyett az onEnded-et használjuk a megbízhatóságért
-                    muted={true}
-                    controls={false}
-                    width="100%"
-                    height="100%"
-                    onEnded={handleVideoEnd} // ÚJ: "Őrszem" funkció
-                    config={{
-                        playerVars: {
-                            playlist: 'TK-K1CZsLmU',
-                            playsinline: 1,
-                            iv_load_policy: 3,
-                            modestbranding: 1,
-                            fs: 0
-                        }
-                    }}
-                />
-            </div>
+            {/* --- ITT A VÁLTOZÁS: Vissza a jó öreg <video> elemhez --- */}
+            <video autoPlay muted loop playsInline id="video-background">
+                <source src="/v1.mp4" type="video/mp4" />
+            </video>
             <div id="video-overlay"></div>
 
             <header className="ui-controls">
