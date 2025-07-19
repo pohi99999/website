@@ -184,6 +184,16 @@ function App() {
                     controls={false}
                     width="100%"
                     height="100%"
+                    config={{
+                        // --- ITT A JAVÍTÁS: kivettük a felesleges 'youtube' kulcsot ---
+                        playerVars: {
+                            playlist: 'TK-K1CZsLmU',
+                            playsinline: 1,
+                            iv_load_policy: 3,
+                            modestbranding: 1,
+                            fs: 0
+                        }
+                    }}
                 />
             </div>
             <div id="video-overlay"></div>
