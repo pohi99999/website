@@ -185,8 +185,8 @@ function App() {
                     width="100%"
                     height="100%"
                     config={{
-                        // --- ITT A JAVÍTÁS: kivettük a felesleges 'youtube' kulcsot ---
                         playerVars: {
+                            // A trükk a megbízható ismétléshez: a videó ID-ját megadjuk lejátszási listaként
                             playlist: 'TK-K1CZsLmU',
                             playsinline: 1,
                             iv_load_policy: 3,
