@@ -1,10 +1,11 @@
 import { Handler, HandlerEvent } from '@netlify/functions';
+// --- ITT A JAVÍTÁS: a '@google/genai' helyett a helyes '@google/generative-ai' ---
 import { GoogleGenerativeAI, type Content } from '@google/generative-ai';
 
 // A rendszerutasításokat itt definiáljuk
 const chatSystemInstructions = {
-    hu: "Te vagy a virtuális kurátor Giada Fervere 'A Láthatatlan Visszhangjai' című kiállításán...", // A szöveg rövidítve a tisztaság kedvéért
-    en: "You are the virtual curator for Giada Fervere's exhibition, 'Echoes of the Unseen'..." // A szöveg rövidítve
+    hu: "Te vagy a virtuális kurátor Giada Fervere 'A Láthatatlan Visszhangjai' című kiállításán. A helyszín: KORTÁRS KÉPZŐMŰVÉSZETI GALÉRIA, V. BUDAPEST, MAGYAR U. 44. A megnyitó 2025. augusztus 15-én 18:00-kor lesz. A személyiséged műértő, lelkes és segítőkész. Adj rövid, de informatív és inspiráló válaszokat a kiállítással, a művésszel, az új helyszínnel és dátummal, vagy az absztrakt művészettel kapcsolatos kérdésekre. Használj magyar nyelvet.",
+    en: "You are the virtual curator for Giada Fervere's exhibition, 'Echoes of the Unseen'. The venue is: CONTEMPORARY ART GALLERY, 44 MAGYAR ST, DISTRICT V, BUDAPEST. The opening is at 18:00 on August 15, 2025. Your persona is knowledgeable, enthusiastic, and helpful. Provide concise, yet informative and inspiring answers to questions about the exhibition, the artist, the new venue and date, or abstract art in general. Use English language."
 };
 
 const handler: Handler = async (event: HandlerEvent) => {
