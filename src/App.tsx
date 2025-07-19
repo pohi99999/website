@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import markdownit from 'markdown-it';
-import { sanitizeHtml } from 'safevalues';
-import { setElementInnerHtml } from 'safevalues/dom';
 import ReactPlayer from 'react-player/youtube';
 
 // --- TÍPUSOK ---
@@ -43,7 +41,7 @@ const locales = {
         blogContent: "Frissítés alatt...",
         sponsors: "Fő támogatók: Pohánka És Társa Company & Classica-2 Kft.",
         copyright: "© 2025 Giada Fervere Produkció. Minden jog fenntartva.",
-    }, // <-- EZ A VESSZŐ HIÁNYZOTT VALÓSZÍNŰLEG!
+    },
     en: {
         pageTitle: "Giada Fervere | Echoes of the Unseen",
         artistName: "Giada Fervere",
