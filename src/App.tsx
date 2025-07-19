@@ -94,7 +94,17 @@ function App() {
     const [isBlogOpen, setBlogOpen] = useState(false);
     const [isMapOpen, setMapOpen] = useState(false);
 
+    // --- ITT AZ ÚJ RÉSZ ---
+    const playerRef = useRef<ReactPlayer>(null);
     const chatMessagesRef = useRef<HTMLDivElement>(null);
+
+    // Ez az "őrszem", ami újraindítja a videót
+    const handleVideoEnd = () => {
+        setTimeout(() => {
+            playerRef.current?.seekTo(0);
+        }, 100); // Rövid késleltetés a biztonság kedvéért
+    };
+    // --- VÉGE ---
 
     const setLanguage = (lang: Language) => {
         setCurrentLang(lang);
@@ -176,17 +186,18 @@ function App() {
         <>
             <div id="video-background-wrapper">
                 <ReactPlayer
+                    ref={playerRef} // ÚJ: Referencia a lejátszóhoz
                     url="https://www.youtube.com/watch?v=TK-K1CZsLmU"
                     className="react-player"
                     playing={true}
-                    loop={true}
+                    // A loop={true} helyett az onEnded-et használjuk a megbízhatóságért
                     muted={true}
                     controls={false}
                     width="100%"
                     height="100%"
+                    onEnded={handleVideoEnd} // ÚJ: "Őrszem" funkció
                     config={{
                         playerVars: {
-                            // A trükk a megbízható ismétléshez: a videó ID-ját megadjuk lejátszási listaként
                             playlist: 'TK-K1CZsLmU',
                             playsinline: 1,
                             iv_load_policy: 3,
