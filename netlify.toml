@@ -1,0 +1,14 @@
+# Netlify build beállítások
+[build]
+  # Ez a parancs fog lefutni a buildelés során
+  command = "npm run build"
+  # A kész weboldal ebben a mappában lesz
+  publish = "dist"
+  # A serverless function-ök helye
+  functions = "netlify/functions"
+
+# Átirányítási szabály, hogy a Single Page App (SPA) működjön
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
