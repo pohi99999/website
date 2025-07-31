@@ -8,9 +8,15 @@ type ChatContent = {
 };
 type Language = 'hu' | 'en';
 
-// --- KONFIGURÁCIÓ ---
-const TOTAL_ARTWORKS = 10;
-const ARTWORK_PATHS = Array.from({ length: TOTAL_ARTWORKS }, (_, i) => `/${i + 1}.jpeg`);
+// --- KONFIGURÁCIÓ (FRISSÍTVE) ---
+const TOTAL_ARTWORKS = 49; // Megnöveltük a képek számát 49-re
+const ARTWORK_PATHS = Array.from({ length: TOTAL_ARTWORKS }, (_, i) => {
+    const imageNumber = i + 1;
+    // Az első 10 kép .jpeg, a többi .jpg kiterjesztésű
+    const extension = imageNumber <= 10 ? 'jpeg' : 'jpg';
+    return `/${imageNumber}.${extension}`;
+});
+
 
 const locales = {
     hu: {
@@ -236,9 +242,9 @@ function App() {
                     <h2>{locales[currentLang].performanceTitle}</h2>
                     <p>{locales[currentLang].performanceContent}</p>
                      <a href="https://youtube.com/@giadafervere?si=XQYtCwJdn8K_5OZh" target="_blank" rel="noopener noreferrer" className="youtube-btn">
-                        <i className="fab fa-youtube"></i>
-                        <span>{locales[currentLang].performanceYoutubeButton}</span>
-                    </a>
+                         <i className="fab fa-youtube"></i>
+                         <span>{locales[currentLang].performanceYoutubeButton}</span>
+                     </a>
                 </div>
             </div>
 
